@@ -33,7 +33,8 @@
     "tailwindcss": "^1.4.4"
   },
   "dependencies": {
-    "sirv-cli": "^0.4.4"
+    "sirv-cli": "^0.4.4",
+    "svelte-spa-router": "^2.1.0"
   },
   "jest": {
     "transform": {
