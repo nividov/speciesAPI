@@ -1,0 +1,39 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2019,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "svelte3"
+    ],
+    "extends": [
+        "eslint:recommended"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "**/*.svelte"
+            ],
+            "processor": "svelte3/svelte3"
+        }
+    ],
+    "globals": {
+        "module": true,
+        "process": true
+    },
+    "ignorePatterns": [
+        "*.config.js",
+        "node_modules/",
+        "public/build/"
+    ],
+    "rules": {
+        "quotes": ["error", "double"],
+        "semi": ["error", "always"],
+        "eqeqeq": ["error", "always"]
+    }
+}
