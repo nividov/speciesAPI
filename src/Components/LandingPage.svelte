@@ -1,9 +1,7 @@
 <script>
-    import { newRequest } from "../Modules/requestHandling"
+    import { newRequest } from "../Modules/requestHandling";
 
 </script>
-
-
 
 <form on:submit|preventDefault={newRequest} >
     <div>Your request</div>
