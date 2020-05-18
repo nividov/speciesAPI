@@ -1,15 +1,13 @@
-
-export function newRequest(input){
-    let newName = processInput(input);
-    doIt(newName);
-}
-
-function processInput(input){
-    let form = input.currentTarget;
-    let name = form.elements.namedItem("latName").value;
-    return name;
-}
-
-function doIt(name){
-    console.log(name);
+export async function newFetch(name){
+    let apiRequestName = name.replace(/\s/g, "%20");
+    let data;
+    await fetch(`https://api.gbif.org/v1/species/match?name=${apiRequestName}`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data2) => {
+            console.log(data2);
+            data = data2;
+        });
+    return data;
 }
