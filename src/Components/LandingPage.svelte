@@ -2,6 +2,8 @@
     import { push } from "svelte-spa-router";
     import { query } from "../Modules/store";
 
+    query.useLocalStorage()
+
     function processInput(input){
         let form = input.currentTarget;
         let name = form.elements.namedItem("latName").value;
