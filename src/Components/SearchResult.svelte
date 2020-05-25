@@ -11,8 +11,9 @@
     let data = "";
 
     onMount(async () => {
+        $query = params.first.replace(/%20/g, " ");
         data = await fetchWithName(params.first);
-        await checkData(data)
+        await checkData(data);
     });
 
     function checkData(data){

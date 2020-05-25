@@ -4,6 +4,8 @@
 
     query.useLocalStorage()
 
+    $query = ""
+
     function processInput(input){
         let form = input.currentTarget;
         let name = form.elements.namedItem("latName").value;
