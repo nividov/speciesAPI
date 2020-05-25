@@ -2,29 +2,19 @@
     import { push } from "svelte-spa-router";
     import { onMount } from "svelte";
     import { get } from "svelte/store";
-    import { fetchWithName } from "../Modules/requestHandling";
+    import { fetchWithName, fetchAll } from "../Modules/requestHandling";
     import { query } from "../Modules/store";
     query.useLocalStorage();
     export let params = {};
 
-    let requestSuccess = false;
     let data = "";
 
     onMount(async () => {
         $query = params.first.replace(/%20/g, " ");
         data = await fetchWithName(params.first);
-        await checkData(data);
+        fetchAll(params.first)
+        console.log(data);
     });
-
-    function checkData(data){
-        if(data.matchType === "NONE"){
-            console.log("not nice")
-        } else if (data.matchType === "FUZZY"){
-            console.log("medium nice")
-        } else if (data.matchType === "EXACT"){
-            console.log("nice")
-        }
-    };
     
     async function processInput(input){
         let form = input.currentTarget;
@@ -37,6 +27,7 @@
 
 </script>
 
+<button on:click={() => push("/")}>Home</button>
 <form on:submit|preventDefault={processInput} >
     <input bind:value={$query} type="text" name="latName">
 </form>
@@ -49,17 +40,14 @@
     <div>
         <ul>
             <li id="Reich">Kingdom: {data.kingdom || "... loading ..."}</li>
-            <li id="Stamm"></li>
-            <li id="Klasse"></li>
-            <li id="Ordnung"></li>
+            <li id="Stamm">Phylum: {data.phylum}</li>
+            <li id="Klasse">Class: {data.class}</li>
+            <li id="Ordnung">Order: {data.order}</li>
             <li id="Familie">Family: {data.family || "... loading ..."}</li>
-            <li id="Gattung"></li>
-            <li id="Art"></li>
+            <li id="Gattung">Genus: {data.genus}</li>
+            <li id="Art">Species: {data.species}</li>
         </ul>
     </div>
-{/if}
-
-{#if data.matchType === "NONE"}
+{:else}
     <div>Nothing found for {get(query)}</div>
 {/if}
-
