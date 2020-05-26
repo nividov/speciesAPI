@@ -38,7 +38,14 @@
 {/if}
 
 {#if data.matchType === "EXACT" || data.matchType === "FUZZY"}
-    <div>
+    <div>{data.canonicalName}</div>
+    <div>also known as
+        {#each data.vernacularNames as name, i}
+            &ensp{name}{i === data.vernacularNames.length - 1 ? "." : ","}
+        {/each}
+    </div>
+    <div class="pt-2">
+        <div>Classification: </div>
         <ul>
             <li id="Reich">Kingdom: {data.classification.kingdom}</li>
             <li id="Stamm">Phylum: {data.classification.phylum}</li>
@@ -49,8 +56,14 @@
             <li id="Art">Species: {data.classification.species}</li>
         </ul>
     </div>
-    <Map heatMap={data.heatMap} />
-    <!-- <Images imageData={data.images} /> -->
+    <div class="pt-2">
+        <div>Distribution Heat Map</div>
+        <Map heatMap={data.heatMap} />
+    </div>
+    <div class="pt-2">
+        <div>Images</div>
+        <!-- <Images imageData={data.images} /> -->
+    </div>
 {:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
     <div>Nothing found for {get(query)}</div>
 {/if}
