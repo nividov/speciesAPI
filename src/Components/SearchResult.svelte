@@ -4,7 +4,8 @@
     import { get } from "svelte/store";
     import { fetchAll } from "../Modules/requestHandling";
     import { query } from "../Modules/store";
-    import Images from "./Images.svelte";
+    // import Images from "./Images.svelte";
+    import Map from "./Map.svelte";
     query.useLocalStorage();
     export let params = {};
 
@@ -48,7 +49,10 @@
             <li id="Art">Species: {data.classification.species}</li>
         </ul>
     </div>
-    <Images imageData={data.images} />
-{:else if data.matchType !== ""}
+    <Map heatMap={data.heatMap} />
+    <!-- <Images imageData={data.images} /> -->
+{:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
     <div>Nothing found for {get(query)}</div>
 {/if}
+
+

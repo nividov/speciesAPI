@@ -5,6 +5,7 @@ export async function fetchAll(userInput){
     }
     await fetchImageData(obj.id);
     await fetchVernacularNames(obj.id);
+    await pushHeatmapURL(obj.id);
     return obj;
 }
 async function fetchClassification(name){
@@ -83,6 +84,11 @@ function pushVernacularNames(data){
     obj.vernacularNames = newArr;
 }
 
+function pushHeatmapURL(id){
+    obj.heatMap.west = `https://api.gbif.org/v2/map/occurrence/density/0/0/0@4x.png?style=gbif-classic.point&srs=EPSG:4326&taxonKey=${id}`;
+    obj.heatMap.east = `https://api.gbif.org/v2/map/occurrence/density/0/1/0@4x.png?style=gbif-classic.point&srs=EPSG:4326&taxonKey=${id}`;
+}
+
 let obj = {
     id: 0,
     matchType: "",
@@ -97,5 +103,9 @@ let obj = {
         species: ""
     },
     images: [],
-    vernacularNames: []
+    vernacularNames: [],
+    heatMap: {
+        west: "",
+        east: ""
+    }
 };
