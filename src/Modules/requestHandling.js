@@ -1,42 +1,43 @@
 export async function fetchAll(userInput){
     await fetchClassification(userInput);
+    if(obj.matchType !== "FUZZY" && obj.matchType !== "EXACT"){
+        return obj;
+    }
     await fetchImageData(obj.id);
     await fetchVernacularNames(obj.id);
-    console.log(obj)
+    return obj;
 }
 async function fetchClassification(name){
-    let data;
     await fetch(`https://api.gbif.org/v1/species/match?name=${name}`)
         .then((response) => {
-            return data = response.json();
+            return response.json();
         })
         .then((res) => {
             setClassification(res);
             setId(res);
-        })
+            setMatchType(res);
+            setCanonicalName(res);
+        });
 }
 async function fetchImageData(id){
-    let data;
     await fetch(`https://api.gbif.org/v1/species/${id}/media`)
         .then((response) => {
-            return data = response.json();
+            return response.json();
         })
         .then((res) => {
             pushImageData(res);
-        })
+        });
 }
 
 async function fetchVernacularNames(id){
-    let data;
     await fetch(`https://api.gbif.org/v1/species/${id}/vernacularNames`)
         .then((response) => {
-            return data = response.json();
+            return response.json();
         })
         .then((res) => {
             pushVernacularNames(res);
-        })
+        });
 }
-
 
 function setClassification(data){
     obj.classification.kingdom = data.kingdom;
@@ -52,6 +53,14 @@ function setId(data){
     obj.id = data.speciesKey;
 }
 
+function setMatchType(data){
+    obj.matchType = data.matchType;
+}
+
+function setCanonicalName(data){
+    obj.canonicalName = data.canonicalName;
+}
+
 function pushImageData(data){
     data.results.forEach(el => {
         let newObj = {
@@ -60,22 +69,24 @@ function pushImageData(data){
             created: el.created,
             license: el.license,
             rightsHolder: el.rightsHolder
-        }
-        obj.images.push(newObj)
-    })
+        };
+        obj.images.push(newObj);
+    });
 }
 
 function pushVernacularNames(data){
-    let newArr = []
+    let newArr = [];
     data.results.forEach(el => {
-        newArr.push(el.vernacularName)
-    })
+        newArr.push(el.vernacularName);
+    });
     newArr = [...new Set(newArr)]; //to filter the unique values
     obj.vernacularNames = newArr;
 }
 
 let obj = {
     id: 0,
+    matchType: "",
+    canonicalName: "",
     classification: {
         kingdom: "",
         phylum: "",
@@ -87,13 +98,4 @@ let obj = {
     },
     images: [],
     vernacularNames: []
-}
-
-export async function fetchWithName(name){
-    let data;
-    await fetch(`https://api.gbif.org/v1/species/match?name=${name}`)
-        .then((response) => {
-            data = response.json();
-        });
-    return data;
-}
+};

@@ -17,6 +17,6 @@ const writableLocalStorage = (key, startValue) => {
       });
     }
   };
-}
+};
 
-export const query = writableLocalStorage("query", "")
+export const query = writableLocalStorage("query", "");

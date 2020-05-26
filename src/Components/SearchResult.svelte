@@ -2,7 +2,7 @@
     import { push } from "svelte-spa-router";
     import { onMount } from "svelte";
     import { get } from "svelte/store";
-    import { fetchWithName, fetchAll } from "../Modules/requestHandling";
+    import { fetchAll } from "../Modules/requestHandling";
     import { query } from "../Modules/store";
     query.useLocalStorage();
     export let params = {};
@@ -11,8 +11,7 @@
 
     onMount(async () => {
         $query = params.first.replace(/%20/g, " ");
-        data = await fetchWithName(params.first);
-        fetchAll(params.first)
+        data = await fetchAll(params.first);
         console.log(data);
     });
     
@@ -39,15 +38,18 @@
 {#if data.matchType === "EXACT" || data.matchType === "FUZZY"}
     <div>
         <ul>
-            <li id="Reich">Kingdom: {data.kingdom || "... loading ..."}</li>
-            <li id="Stamm">Phylum: {data.phylum}</li>
-            <li id="Klasse">Class: {data.class}</li>
-            <li id="Ordnung">Order: {data.order}</li>
-            <li id="Familie">Family: {data.family || "... loading ..."}</li>
-            <li id="Gattung">Genus: {data.genus}</li>
-            <li id="Art">Species: {data.species}</li>
+            <li id="Reich">Kingdom: {data.classification.kingdom}</li>
+            <li id="Stamm">Phylum: {data.classification.phylum}</li>
+            <li id="Klasse">Class: {data.classification.class}</li>
+            <li id="Ordnung">Order: {data.classification.order}</li>
+            <li id="Familie">Family: {data.classification.family}</li>
+            <li id="Gattung">Genus: {data.classification.genus}</li>
+            <li id="Art">Species: {data.classification.species}</li>
         </ul>
     </div>
-{:else}
+    {#if data.images.length > 0}
+        <img src="{data.images[0].URL}" alt="bild">
+    {/if}
+{:else if data.matchType !== ""}
     <div>Nothing found for {get(query)}</div>
 {/if}
