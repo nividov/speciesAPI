@@ -4,6 +4,7 @@
     import { get } from "svelte/store";
     import { fetchAll } from "../Modules/requestHandling";
     import { query } from "../Modules/store";
+    import Images from "./Images.svelte";
     query.useLocalStorage();
     export let params = {};
 
@@ -47,9 +48,7 @@
             <li id="Art">Species: {data.classification.species}</li>
         </ul>
     </div>
-    {#if data.images.length > 0}
-        <img src="{data.images[0].URL}" alt="bild">
-    {/if}
+    <Images imageData={data.images} />
 {:else if data.matchType !== ""}
     <div>Nothing found for {get(query)}</div>
 {/if}
