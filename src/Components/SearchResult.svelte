@@ -56,8 +56,7 @@
             <li id="Art">Species: {data.classification.species}</li>
         </ul>
     </div>
-    <div class="pt-2">
-        <div>Distribution Heat Map</div>
+    <div class="block">
         <Map heatMap={data.heatMap} />
     </div>
     <div class="pt-2">
