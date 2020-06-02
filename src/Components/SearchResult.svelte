@@ -56,9 +56,7 @@
             <li id="Art">Species: {data.classification.species}</li>
         </ul>
     </div>
-    <div class="block">
-        <Map heatMap={data.heatMap} />
-    </div>
+    <Map heatMap={data.heatMap} />
     <div class="pt-2">
         <div>Images</div>
         <Images imageData={data.images} />
@@ -66,5 +64,3 @@
 {:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
     <div>Nothing found for {get(query)}</div>
 {/if}
-
-

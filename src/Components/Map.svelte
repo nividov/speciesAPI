@@ -7,7 +7,7 @@
 <div>Distribution Heat Map</div>
 
 <div class="flex">
-    <div class="relative flex-grow">
+    <div class="relative flex-grow container">
         <div class="over">
             <img src={heatMap.west} alt="">
         </div>
@@ -15,7 +15,7 @@
             <img src="./images/mapBackground/mapBackground1.png" alt="bild">
         </div>
     </div>
-    <div class="relative flex-grow">
+    <div class="relative flex-grow container">
         <div class="over">
             <img src={heatMap.east} alt="">
         </div>
@@ -41,5 +41,8 @@
         left: 0px;
         top: 0px;
         z-index: 2;
+    }
+    .container {
+        padding-top: 50%;
     }
 </style>
