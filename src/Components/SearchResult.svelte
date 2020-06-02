@@ -4,7 +4,7 @@
     import { get } from "svelte/store";
     import { fetchAll } from "../Modules/requestHandling";
     import { query } from "../Modules/store";
-    // import Images from "./Images.svelte";
+    import Images from "./Images.svelte";
     import Map from "./Map.svelte";
     query.useLocalStorage();
     export let params = {};
@@ -39,7 +39,7 @@
 
 {#if data.matchType === "EXACT" || data.matchType === "FUZZY"}
     <div>{data.canonicalName}</div>
-    <div>also known as
+    <div><strong>also known as</strong>
         {#each data.vernacularNames as name, i}
             &ensp{name}{i === data.vernacularNames.length - 1 ? "." : ","}
         {/each}
@@ -61,7 +61,7 @@
     </div>
     <div class="pt-2">
         <div>Images</div>
-        <!-- <Images imageData={data.images} /> -->
+        <Images imageData={data.images} />
     </div>
 {:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
     <div>Nothing found for {get(query)}</div>
