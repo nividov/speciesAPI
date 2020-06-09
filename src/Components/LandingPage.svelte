@@ -16,12 +16,12 @@
 
 </script>
 
-<img src="./images/background/th.jpg" alt="background" id="backgroundImage" class="backgroundImage">
+<img src="./images/background/bg10.jpg" alt="background" id="backgroundImage" class="backgroundImage">
 <div class="fixed z-40 containerLanding">
     <div class="text-2xl text-white font-semibold">SpeciesAPI</div>
-    <form on:submit|preventDefault={processInput} class="form">
+    <form on:submit|preventDefault={processInput} class="form" name="landing-form">
         <input bind:value={$query} type="text" name="latName" class="input" autofocus>
-        <div class="material-icons goArrow"> arrow_forward</div>
+        <button class="material-icons goArrow" on:click={processInput}> arrow_forward </button>
     </form>
 </div>
 
@@ -59,6 +59,9 @@
     }
     .goArrow {
         margin-right: 1rem;
+        margin-left: 1rem;
         font-size: 2rem;
+        border: none;
+        height: 52px;
     }
 </style>

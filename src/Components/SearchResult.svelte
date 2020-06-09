@@ -32,12 +32,9 @@
     <button on:click={() => push("/")} class="material-icons border-none homeButton">home</button>
     <form on:submit|preventDefault={processInput} class="form">
         <input bind:value={$query} type="text" name="latName" class="input" autofocus>
-        <div class="material-icons goArrow"> arrow_forward</div>
+        <button class="material-icons goArrow" on:click={processInput}> arrow_forward</button>
     </form>
 </div>
-<!-- <form on:submit|preventDefault={processInput} >
-    <input bind:value={$query} type="text" name="latName">
-</form> -->
 
 {#if data.matchType === "FUZZY"}
     <div>{get(query)} was not found. Showing results for {data.canonicalName}</div>
@@ -46,26 +43,30 @@
 {#if data.matchType === "EXACT" || data.matchType === "FUZZY"}
     <div class="resultsListBody">
         <div class="text-4xl"><strong>{data.canonicalName}</strong></div>
-        <div class="text-xl"><strong>also known as</strong>
+        <div class="text-xl mb-8"><strong>also known as</strong>
             {#each data.vernacularNames as name, i}
                 &ensp{name}{i === data.vernacularNames.length - 1 ? "." : ","}
             {/each}
         </div>
-        <div class="pt-2">
-            <div>Classification: </div>
-            <ul>
-                <li id="Reich">Kingdom: {data.classification.kingdom}</li>
-                <li id="Stamm">Phylum: {data.classification.phylum}</li>
-                <li id="Klasse">Class: {data.classification.class}</li>
-                <li id="Ordnung">Order: {data.classification.order}</li>
-                <li id="Familie">Family: {data.classification.family}</li>
-                <li id="Gattung">Genus: {data.classification.genus}</li>
-                <li id="Art">Species: {data.classification.species}</li>
-            </ul>
+        <div class="flex max-w-full">
+            <div class="flex-grow">
+                <Map heatMap={data.heatMap} />
+            </div>
+            <div class="ml-16 flex-none">
+                <div class="text-2xl mb-2 mt-32"> Classification </div>
+                <ul class="text-xl">
+                    <li id="Reich">Kingdom: {data.classification.kingdom}</li>
+                    <li id="Stamm">Phylum: {data.classification.phylum}</li>
+                    <li id="Klasse">Class: {data.classification.class}</li>
+                    <li id="Ordnung">Order: {data.classification.order}</li>
+                    <li id="Familie">Family: {data.classification.family}</li>
+                    <li id="Gattung">Genus: {data.classification.genus}</li>
+                    <li id="Art">Species: {data.classification.species}</li>
+                </ul>
+            </div>
         </div>
-        <Map heatMap={data.heatMap} />
         <div class="pt-2">
-            <div>Images</div>
+            <div class="text-2xl">Images</div>
             <Images imageData={data.images} />
         </div>
     </div>
@@ -86,10 +87,12 @@
         outline: none;
     }
     .containerSearch {
-        margin-left:1rem;
-        margin-top: 20px;
-        margin-bottom: 40px;
-        width: 30%;
+        background-color: rgb(189, 189, 189);
+        padding-left:1rem;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-right: 70%;
+        width: 100%;
     }
     .form {
         display: flex;
@@ -103,13 +106,17 @@
     .goArrow {
         margin-right: 1rem;
         font-size: 2rem;
+        border: none;
+        height: 100%;
     }
     .homeButton {
         margin-right: 1rem;
         font-size: 2rem;
     }
     .resultsListBody {
-        margin-left: 2rem;
+        margin-top: 1.5rem;
+        margin-left: 4rem;
         margin-right: 8rem;
+        max-width: 80rem;
     }
 </style>
