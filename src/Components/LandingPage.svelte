@@ -26,7 +26,7 @@
 
 <img src="./images/background/bg{rand}.jpg" alt="background" id="backgroundImage" class="backgroundImage">
 <div class="fixed z-40 containerLanding">
-    <div class="text-2xl text-white font-semibold">SpeciesAPI</div>
+    <div class="text-2xl {rand === 1 ? "" : "text-white"} font-semibold">SpeciesINFO</div>
     <form on:submit|preventDefault={processInput} class="form" name="landing-form">
         <input bind:value={$query} type="text" name="latName" class="input" autofocus>
         <button class="material-icons goArrow" on:click={processInput}> arrow_forward </button>
