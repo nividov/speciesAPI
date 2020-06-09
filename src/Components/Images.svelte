@@ -4,13 +4,20 @@
 
 </script>
 
-<div class="imageContainer">
-    {#each imageData as imageData}
-        <div class="cont">
-            <img class="image" src="{imageData.URL}" alt="bild">
-        </div>
-    {/each}
-</div>
+{#if imageData.length === 0}
+    <div class="flex">
+        <img class="image" src="./images/noImages/sadPanda.jpg" alt="">
+        <div class="text-4xl">sorry, no images found</div>
+    </div>
+{:else}
+    <div class="imageContainer">
+        {#each imageData as imageData}
+            <div class="cont">
+                <img class="image" src="{imageData.URL}" alt="bild">
+            </div>
+        {/each}
+    </div>
+{/if}
 
 <style>
     .image {
