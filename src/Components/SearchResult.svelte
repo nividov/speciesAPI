@@ -48,12 +48,15 @@
 {#if data.matchType === "EXACT" || data.matchType === "FUZZY"}
     <div class="resultsListBody">
         <div class="text-4xl"><strong>{data.canonicalName}</strong></div>
-        <div class="text-xl mb-8"><strong>also known as</strong>
+        <div class="text-xl mb-4"><strong>also known as</strong>
             {#each data.vernacularNames as name, i}
                 &ensp{name}{i === data.vernacularNames.length - 1 ? "." : ","}
             {/each}
         </div>
-        <div on:click={openWikipedia} class="cursor-pointer">W show Wikipedia article</div>
+        <div on:click={openWikipedia} class="cursor-pointer flex mb-4">
+            <img id="wikipediaLogo" src="./images/Wikipedia/wikipedia.ico" alt="wikipedia_logo">
+            <div class="text-xl pl-2">show Wikipedia article</div>
+        </div>
         <div class="flex max-w-full">
             <div class="flex-grow">
                 <Map heatMap={data.heatMap} />
@@ -81,6 +84,9 @@
 {/if}
 
 <style>
+    #wikipediaLogo{
+        height: 2rem;
+    }
     .input {
         width: 100%;
         height: 52px;
