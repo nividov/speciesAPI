@@ -33,17 +33,19 @@
 
 </script>
 
-<div class="containerSearch flex">
-    <button on:click={() => push("/")} class="material-icons border-none homeButton">home</button>
-    <form on:submit|preventDefault={processInput} class="form">
-        <input bind:value={$query} type="text" name="latName" class="input" autofocus>
-        <button class="material-icons goArrow" on:click={processInput}> arrow_forward</button>
-    </form>
+<div class="containerSearch">
+    <div class="flex formContainer">
+        <button on:click={() => push("/")} class="material-icons border-none homeButton">home</button>
+        <form on:submit|preventDefault={processInput} class="form">
+            <input bind:value={$query} type="text" name="latName" class="input" autofocus>
+            <button class="material-icons goArrow" on:click={processInput}> arrow_forward</button>
+        </form>
+    </div>
+    {#if data.matchType === "FUZZY"}
+        <div class="pl-12 pt-2">No results for {get(query)}. Showing results for {data.canonicalName} instead</div>
+    {/if}
 </div>
 
-{#if data.matchType === "FUZZY"}
-    <div>{get(query)} was not found. Showing results for {data.canonicalName}</div>
-{/if}
 
 {#if data.matchType === "EXACT" || data.matchType === "FUZZY"}
     <div class="resultsListBody">
@@ -57,23 +59,22 @@
             <img id="wikipediaLogo" src="./images/Wikipedia/wikipedia.ico" alt="wikipedia_logo">
             <div class="text-xl pl-2">show Wikipedia article</div>
         </div>
-        <div class="flex max-w-full">
-            <div class="flex-grow">
-                <Map heatMap={data.heatMap} />
-            </div>
-            <div class="ml-16 flex-none">
-                <div class="text-2xl mb-2 mt-32"> Classification </div>
-                <ul class="text-xl">
-                    <li id="Reich">Kingdom: {data.classification.kingdom}</li>
-                    <li id="Stamm">Phylum: {data.classification.phylum}</li>
-                    <li id="Klasse">Class: {data.classification.class}</li>
-                    <li id="Ordnung">Order: {data.classification.order}</li>
-                    <li id="Familie">Family: {data.classification.family}</li>
-                    <li id="Gattung">Genus: {data.classification.genus}</li>
-                    <li id="Art">Species: {data.classification.species}</li>
-                </ul>
-            </div>
+        <div class="">
+            <div class="text-2xl mb-2"> Classification </div>
+            <ul class="text-xl">
+                <li id="Reich">Kingdom: {data.classification.kingdom}</li>
+                <li id="Stamm">Phylum: {data.classification.phylum}</li>
+                <li id="Klasse">Class: {data.classification.class}</li>
+                <li id="Ordnung">Order: {data.classification.order}</li>
+                <li id="Familie">Family: {data.classification.family}</li>
+                <li id="Gattung">Genus: {data.classification.genus}</li>
+                <li id="Art">Species: {data.classification.species}</li>
+            </ul>
         </div>
+        <div>
+            <Map heatMap={data.heatMap} />
+        </div>
+
         <div class="pt-2">
             <div class="text-2xl">Images</div>
             <Images imageData={data.images} />
@@ -84,6 +85,9 @@
 {/if}
 
 <style>
+    .formContainer{
+        max-width: 30rem;
+    }
     #wikipediaLogo{
         height: 2rem;
     }
@@ -103,7 +107,6 @@
         padding-left:1rem;
         padding-top: 30px;
         padding-bottom: 30px;
-        padding-right: 70%;
         width: 100%;
     }
     .form {
