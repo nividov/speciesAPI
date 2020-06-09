@@ -26,6 +26,11 @@
         location.reload();
     }
 
+    function openWikipedia() {
+        let parameter = data.canonicalName.replace(/%20/g, "_");
+        window.open(`https://en.wikipedia.org/wiki/${parameter}`,"_blank")
+    }
+
 </script>
 
 <div class="containerSearch flex">
@@ -48,6 +53,7 @@
                 &ensp{name}{i === data.vernacularNames.length - 1 ? "." : ","}
             {/each}
         </div>
+        <div on:click={openWikipedia} class="cursor-pointer">W show Wikipedia article</div>
         <div class="flex max-w-full">
             <div class="flex-grow">
                 <Map heatMap={data.heatMap} />
