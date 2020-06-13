@@ -85,8 +85,8 @@ function pushVernacularNames(data){
 }
 
 function pushHeatmapURL(id){
-    obj.heatMap.west = `https://api.gbif.org/v2/map/occurrence/density/0/0/0@4x.png?style=gbif-classic.point&srs=EPSG:4326&taxonKey=${id}`;
-    obj.heatMap.east = `https://api.gbif.org/v2/map/occurrence/density/0/1/0@4x.png?style=gbif-classic.point&srs=EPSG:4326&taxonKey=${id}`;
+    obj.heatMap.west = `https://api.gbif.org/v2/map/occurrence/density/0/0/0@4x.png?style=classic.point&srs=EPSG:4326&taxonKey=${id}`;
+    obj.heatMap.east = `https://api.gbif.org/v2/map/occurrence/density/0/1/0@4x.png?style=classic.point&srs=EPSG:4326&taxonKey=${id}`;
 }
 
 let obj = {
