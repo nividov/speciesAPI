@@ -7,6 +7,8 @@
 
     $query = "";
 
+    //upon submitting the search form, the input is first processed and brought into the correct
+    //format so that it can be written into the request URL
     function processInput(input){
         let form = input.currentTarget;
         let name = form.elements.namedItem("latName").value;
@@ -17,12 +19,13 @@
         push(`/search/${apiRequestName}`);
     }
 
+    //this logic is responsible for delivering a random number that is used to determine
+    //the background image.
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
     let rand = getRandomInt(1, 10);
 
 </script>

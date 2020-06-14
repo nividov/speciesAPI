@@ -1,4 +1,5 @@
 <script>
+    //this component is responsible for rendering the impressum upon pressing the impressum button
 	let impressum = false
 </script>
 

@@ -9,16 +9,23 @@
     import Impressum from "./Impressum.svelte";
 
     query.useLocalStorage();
+
+    //params is the object, where the parameter of the URL is written into
     export let params = {};
 
+    //into data all the information coming from the API call is written
     let data = "";
 
+    //this function is executed, when the component is rendered. It is then responsible for starting the API
+    //call with the URL parameter.
     onMount(async () => {
         $query = params.first.replace(/%20/g, " ");
         data = await fetchAll(params.first);
         console.log(data);
     });
 
+    //on the result page, the user can fire another search. This function processes the new
+    //input and fires the request.
     async function processInput(input){
         let form = input.currentTarget;
         let name = form.elements.namedItem("latName").value;
@@ -26,11 +33,12 @@
         if(name === ""){
             return;
         }
-
         await push(`/search/${apiRequestName}`);
         location.reload();
     }
 
+    //This function transorms the sceintific name so that it can be used in the Wikipedia URL
+    //and opens the appropriate article.
     function openWikipedia() {
         let parameter = data.canonicalName.replace(/%20/g, "_");
         window.open(`https://en.wikipedia.org/wiki/${parameter}`,"_blank");

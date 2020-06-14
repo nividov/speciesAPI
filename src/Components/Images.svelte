@@ -1,7 +1,8 @@
 <script>
-
+    //imageData is the parameter for this compnent.
     export let imageData = [];
 
+    //the functions are responsible for showing copyright information upon hovering an image
     function handleHover(imageData){
         document.querySelector("#infobox").classList.remove("hidden")
         document.querySelector("#infobox").innerHTML = `${imageData.license || ""} ${imageData.rightsHolder || ""}. Source by ${imageData.source}`
@@ -12,6 +13,7 @@
 
 </script>
 
+<!-- if no image is present in the database, a dummy is loaded -->
 {#if imageData.length === 0}
     <div class="flex">
         <img class="image" src="./images/noImages/sadPanda.jpg" alt="">
@@ -62,7 +64,6 @@
         z-index: 2;
         overflow: hidden;
     }
-    
     .noDrag{
         user-select: none;
         -moz-user-select: none;
@@ -70,6 +71,5 @@
         -webkit-user-select: none;
         -ms-user-select: none;
     }
-
 </style>
 

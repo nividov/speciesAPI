@@ -1,3 +1,10 @@
+//this helper module is responsible for handling the requests and the data. Therefore, the GUI components don't
+//have to handle the data, just display them in a correct way.
+//'fetch...' functions trigger the API requests; 'set...' functions are responsible for packing the retrieved data
+//into the final object 'obj'
+
+//this function starts the fetch calls. Each fetchCall will retrieve information form the API server
+//and then write the information into the obj object, which will be passed.
 export async function fetchAll(userInput){
     await fetchClassification(userInput);
     if(obj.matchType !== "FUZZY" && obj.matchType !== "EXACT"){
@@ -5,7 +12,7 @@ export async function fetchAll(userInput){
     }
     await fetchImageData(obj.id);
     await fetchVernacularNames(obj.id);
-    await pushHeatmapURL(obj.id);
+    await setHeatmapURL(obj.id);
     return obj;
 }
 async function fetchClassification(name){
@@ -26,7 +33,7 @@ async function fetchImageData(id){
             return response.json();
         })
         .then((res) => {
-            pushImageData(res);
+            setImageData(res);
         });
 }
 
@@ -36,7 +43,7 @@ async function fetchVernacularNames(id){
             return response.json();
         })
         .then((res) => {
-            pushVernacularNames(res);
+            setVernacularNames(res);
         });
 }
 
@@ -62,7 +69,7 @@ function setCanonicalName(data){
     obj.canonicalName = data.canonicalName;
 }
 
-function pushImageData(data){
+function setImageData(data){
     data.results.forEach(el => {
         let newObj = {
             URL: el.identifier,
@@ -75,7 +82,7 @@ function pushImageData(data){
     });
 }
 
-function pushVernacularNames(data){
+function setVernacularNames(data){
     let newArr = [];
     data.results.forEach(el => {
         newArr.push(el.vernacularName);
@@ -84,7 +91,7 @@ function pushVernacularNames(data){
     obj.vernacularNames = newArr;
 }
 
-function pushHeatmapURL(id){
+function setHeatmapURL(id){
     obj.heatMap.west = `https://api.gbif.org/v2/map/occurrence/density/0/0/0@4x.png?style=classic.point&srs=EPSG:4326&taxonKey=${id}`;
     obj.heatMap.east = `https://api.gbif.org/v2/map/occurrence/density/0/1/0@4x.png?style=classic.point&srs=EPSG:4326&taxonKey=${id}`;
 }

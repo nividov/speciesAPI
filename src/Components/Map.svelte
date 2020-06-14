@@ -1,9 +1,10 @@
 <script>
-
+    //heatMap is the parameter of the component that gets passed in.
+    //The Map displayed to the user consists of 2 layers: the background and the heatMap.
+    //The heatMap is the part that changes.
     export let heatMap
-
 </script>
-    
+
 <div class="text-2xl mb-4 mt-8">Distribution Heat Map</div>
 
 <div class="flex mapBody">
@@ -24,8 +25,6 @@
         </div>
     </div>
 </div>
-
-
 
 <style>
     .under {
