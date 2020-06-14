@@ -1,5 +1,5 @@
 <script>
-    import { push } from "svelte-spa-router";
+    import { routing } from "../Modules/routing.js";
     import { onMount } from "svelte";
     import { fetchAll } from "../Modules/requestHandling";
     import Images from "./Images.svelte";
@@ -29,8 +29,9 @@
         if(name === ""){
             return;
         }
-        await push(`/search/${URLname}`);
-        location.reload();
+        routing.changeTo(`/search/${URLname}`);
+        let fetchName = name.replace(/\s/g, "%20");
+        data = await fetchAll(fetchName);
     }
 
     //This function transorms the sceintific name so that it can be used in the Wikipedia URL
@@ -45,7 +46,7 @@
 
 <div class="containerSearch">
     <div class="flex formContainer">
-        <button on:click={() => push("/")} class="material-icons border-none homeButton">home</button>
+        <button on:click={() => routing.changeTo("/")} class="material-icons border-none homeButton">home</button>
         <form on:submit|preventDefault={processInput} class="form">
             <input type="text" id="inputField" name="latName" class="input">
             <button class="material-icons goArrow" on:click={processInput}> arrow_forward</button>
