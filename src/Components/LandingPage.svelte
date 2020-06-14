@@ -1,22 +1,17 @@
 <script>
     import { push } from "svelte-spa-router";
-    import { query } from "../Modules/store";
     import Impressum from "./Impressum.svelte";
-
-    query.useLocalStorage();
-
-    $query = "";
 
     //upon submitting the search form, the input is first processed and brought into the correct
     //format so that it can be written into the request URL
     function processInput(input){
         let form = input.currentTarget;
         let name = form.elements.namedItem("latName").value;
-        let apiRequestName = name.replace(/\s/g, "%20");
+        let URLname = name.replace(/\s/g, "_");
         if(name === ""){
             return;
         }
-        push(`/search/${apiRequestName}`);
+        push(`/search/${URLname}`);
     }
 
     //this logic is responsible for delivering a random number that is used to determine
@@ -34,7 +29,7 @@
 <div class="fixed z-40 containerLanding select-none">
     <div class="text-2xl {rand === 1 ? "" : "text-white"} font-semibold">SpeciesINFO</div>
     <form on:submit|preventDefault={processInput} class="form" name="landing-form">
-        <input bind:value={$query} type="text" name="latName" class="input">
+        <input type="text" name="latName" class="input">
         <button class="material-icons goArrow" on:click={processInput}> arrow_forward </button>
     </form>
 </div>

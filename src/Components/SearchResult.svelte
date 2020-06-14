@@ -1,14 +1,10 @@
 <script>
     import { push } from "svelte-spa-router";
     import { onMount } from "svelte";
-    import { get } from "svelte/store";
     import { fetchAll } from "../Modules/requestHandling";
-    import { query } from "../Modules/store";
     import Images from "./Images.svelte";
     import Map from "./Map.svelte";
     import Impressum from "./Impressum.svelte";
-
-    query.useLocalStorage();
 
     //params is the object, where the parameter of the URL is written into
     export let params = {};
@@ -19,9 +15,9 @@
     //this function is executed, when the component is rendered. It is then responsible for starting the API
     //call with the URL parameter.
     onMount(async () => {
-        $query = params.first.replace(/%20/g, " ");
-        data = await fetchAll(params.first);
-        console.log(data);
+        document.querySelector("#inputField").value = params.first.replace(/_/g, " ");
+        let fetchName = params.first.replace(/_/g, "%20");
+        data = await fetchAll(fetchName);
     });
 
     //on the result page, the user can fire another search. This function processes the new
@@ -29,11 +25,11 @@
     async function processInput(input){
         let form = input.currentTarget;
         let name = form.elements.namedItem("latName").value;
-        let apiRequestName = name.replace(/\s/g, "%20");
+        let URLname = name.replace(/\s/g, "_");
         if(name === ""){
             return;
         }
-        await push(`/search/${apiRequestName}`);
+        await push(`/search/${URLname}`);
         location.reload();
     }
 
@@ -51,12 +47,12 @@
     <div class="flex formContainer">
         <button on:click={() => push("/")} class="material-icons border-none homeButton">home</button>
         <form on:submit|preventDefault={processInput} class="form">
-            <input bind:value={$query} type="text" name="latName" class="input">
+            <input type="text" id="inputField" name="latName" class="input">
             <button class="material-icons goArrow" on:click={processInput}> arrow_forward</button>
         </form>
     </div>
     {#if data.matchType === "FUZZY"}
-        <div class="pl-12 pt-2">No results for {get(query)}. Showing results for {data.canonicalName} instead</div>
+        <div class="pl-12 pt-2">No results for {params.first.replace(/_/g, " ")}. Showing results for {data.canonicalName} instead</div>
     {/if}
 </div>
 
@@ -105,7 +101,7 @@
 
 
 {:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
-    <div>Nothing found for {get(query)}</div>
+    <div>Nothing found for {params.first.replace(/_/g, " ")}</div>
 {/if}
 
 
