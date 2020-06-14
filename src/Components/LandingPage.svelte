@@ -25,10 +25,10 @@
 </script>
 
 <img src="./images/background/bg{rand}.jpg" alt="background" id="backgroundImage" class="backgroundImage">
-<div class="fixed z-40 containerLanding">
+<div class="fixed z-40 containerLanding select-none">
     <div class="text-2xl {rand === 1 ? "" : "text-white"} font-semibold">SpeciesINFO</div>
     <form on:submit|preventDefault={processInput} class="form" name="landing-form">
-        <input bind:value={$query} type="text" name="latName" class="input" autofocus>
+        <input bind:value={$query} type="text" name="latName" class="input">
         <button class="material-icons goArrow" on:click={processInput}> arrow_forward </button>
     </form>
 </div>
@@ -71,5 +71,8 @@
         font-size: 2rem;
         border: none;
         height: 52px;
+    }
+    .goArrow:focus {
+        border: 2px solid black
     }
 </style>

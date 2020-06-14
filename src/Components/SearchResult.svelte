@@ -37,7 +37,7 @@
     <div class="flex formContainer">
         <button on:click={() => push("/")} class="material-icons border-none homeButton">home</button>
         <form on:submit|preventDefault={processInput} class="form">
-            <input bind:value={$query} type="text" name="latName" class="input" autofocus>
+            <input bind:value={$query} type="text" name="latName" class="input">
             <button class="material-icons goArrow" on:click={processInput}> arrow_forward</button>
         </form>
     </div>
