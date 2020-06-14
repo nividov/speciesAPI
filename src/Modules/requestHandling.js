@@ -70,6 +70,7 @@ function setCanonicalName(data){
 }
 
 function setImageData(data){
+    let newArr = [];
     data.results.forEach(el => {
         let newObj = {
             URL: el.identifier,
@@ -78,8 +79,9 @@ function setImageData(data){
             license: el.license,
             rightsHolder: el.rightsHolder
         };
-        obj.images.push(newObj);
+        newArr.push(newObj);
     });
+    obj.images = newArr;
 }
 
 function setVernacularNames(data){
