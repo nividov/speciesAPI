@@ -75,8 +75,8 @@
             <Map heatMap={data.heatMap} />
         </div>
 
-        <div class="pt-2">
-            <div class="text-2xl">Images</div>
+        <div>
+            <div class="text-2xl mt-8 mb-4">Images</div>
             <Images imageData={data.images} />
         </div>
     </div>

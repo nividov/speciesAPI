@@ -4,7 +4,7 @@
 
 </script>
     
-<div class="text-2xl mb-4 mt-4">Distribution Heat Map</div>
+<div class="text-2xl mb-4 mt-8">Distribution Heat Map</div>
 
 <div class="flex mapBody">
     <div class="relative flex-grow container">
