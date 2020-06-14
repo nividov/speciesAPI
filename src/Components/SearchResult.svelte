@@ -80,6 +80,9 @@
             <Images imageData={data.images} />
         </div>
     </div>
+    <div class="gbif">Search results kindly provided by gbif.org</div>
+
+
 {:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
     <div>Nothing found for {get(query)}</div>
 {/if}
@@ -133,5 +136,14 @@
         margin-left: 4rem;
         margin-right: 8rem;
         max-width: 80rem;
+    }
+    .gbif {
+        height: 6rem;
+        padding-top: .75rem;
+        text-align: center;
+        font-size: 2rem;
+        background-color: rgb(0, 132, 255);
+        margin-top: 2rem;
+        color: white;
     }
 </style>
