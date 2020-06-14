@@ -26,7 +26,7 @@
 
 </script>
 
-<img src="./images/background/bg{rand}.jpg" alt="background" id="backgroundImage" class="backgroundImage">
+<img src="./images/background/bg{rand}.jpg" alt="background" id="backgroundImage" class="backgroundImage noDrag">
 <div class="fixed z-40 containerLanding select-none">
     <div class="text-2xl {rand === 1 ? "" : "text-white"} font-semibold">SpeciesINFO</div>
     <form on:submit|preventDefault={processInput} class="form" name="landing-form">
@@ -35,10 +35,15 @@
     </form>
 </div>
 
+<div class="impressum">
+    <Impressum />
+</div>
+
+
 <style>
     .backgroundImage {
 		height: 100%;
-		min-width: 100%; 
+		min-width: 100%;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -77,4 +82,18 @@
     .goArrow:focus {
         border: 2px solid black
     }
+    .impressum {
+        position: absolute;
+        left: calc(100% - 14ch);
+        bottom: 10px;
+        max-width: 12ch;
+    }
+    .noDrag{
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
 </style>

@@ -21,7 +21,7 @@
     <div class="imageContainer" on:mouseleave={handleLeave}>
         {#each imageData as imageData}
             <div class="cont cursor-pointer">
-                <img class="image" src="{imageData.URL}" alt="bild" on:mouseenter={() => handleHover(imageData)}>
+                <img class="image noDrag" src="{imageData.URL}" alt="bild" on:mouseenter={() => handleHover(imageData)}>
             </div>
         {/each}
         <div class="info hidden" id="infobox"></div>
@@ -62,5 +62,14 @@
         z-index: 2;
         overflow: hidden;
     }
+    
+    .noDrag{
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
 </style>
 
