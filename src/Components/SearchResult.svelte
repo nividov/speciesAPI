@@ -6,6 +6,8 @@
     import { query } from "../Modules/store";
     import Images from "./Images.svelte";
     import Map from "./Map.svelte";
+    import Impressum from "./Impressum.svelte";
+
     query.useLocalStorage();
     export let params = {};
 
@@ -16,10 +18,9 @@
         data = await fetchAll(params.first);
         console.log(data);
     });
-    
+
     async function processInput(input){
         let form = input.currentTarget;
-        console.log(form.elements)
         let name = form.elements.namedItem("latName").value;
         let apiRequestName = name.replace(/\s/g, "%20");
         if(name === ""){
@@ -34,6 +35,7 @@
         let parameter = data.canonicalName.replace(/%20/g, "_");
         window.open(`https://en.wikipedia.org/wiki/${parameter}`,"_blank");
     }
+
 
 </script>
 
@@ -84,12 +86,20 @@
             <Images imageData={data.images} />
         </div>
     </div>
-    <div class="gbif">Search results kindly provided by gbif.org</div>
+    <div class="footer">
+        <div class="gbif">
+            Search results kindly provided by gbif.org
+        </div>
+        <div class="impressum">
+            <Impressum />
+        </div>
+    </div>
 
 
 {:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
     <div>Nothing found for {get(query)}</div>
 {/if}
+
 
 <style>
     .formContainer{
@@ -141,13 +151,21 @@
         margin-right: 8rem;
         max-width: 80rem;
     }
-    .gbif {
+    .footer {
         height: 6rem;
         padding-top: .75rem;
         text-align: center;
-        font-size: 2rem;
         background-color: rgb(0, 132, 255);
         margin-top: 2rem;
+    }
+    .gbif {
+        font-size: 2rem;
         color: white;
+    }
+    .impressum {
+        position: relative;
+        bottom: 40px;
+        left: calc(100% - 14ch);
+        max-width: 12ch;
     }
 </style>

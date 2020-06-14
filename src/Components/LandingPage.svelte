@@ -1,6 +1,7 @@
 <script>
     import { push } from "svelte-spa-router";
     import { query } from "../Modules/store";
+    import Impressum from "./Impressum.svelte";
 
     query.useLocalStorage();
 
