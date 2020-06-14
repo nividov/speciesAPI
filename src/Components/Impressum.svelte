@@ -1,6 +1,6 @@
 <script>
     //this component is responsible for rendering the impressum upon pressing the impressum button
-	let impressum = false
+	let impressum = false;
 </script>
 
 {#if impressum}
@@ -14,14 +14,14 @@
                 <div>telefone: +39 329 9692234</div>
                 <div>email: marvinkobald@outlook.com</div>
             </ul>
-            <div on:click={() => impressum = false} class="material-icons z-40 select-none absolute top-0 right-0 mt-2 mr-3 flex justify-center cursor-pointer border-2 border-black rounded-full bg-blue-300">
+            <div on:click={() => impressum = false} id="closeButton" class="material-icons z-40 select-none absolute top-0 right-0 mt-2 mr-3 flex justify-center cursor-pointer border-2 border-black rounded-full bg-blue-300">
                 close
             </div>
         </div>
     </div>
 {/if}
 
-<div class="impressum-button cursor-pointer" on:click={() => impressum = true}>Impressum</div>
+<div class="impressum-button cursor-pointer" id="impressumButton" on:click={() => impressum = true}>Impressum</div>
 
 
 <style>

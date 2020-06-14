@@ -22,9 +22,8 @@
 
     //on the result page, the user can fire another search. This function processes the new
     //input and fires the request.
-    async function processInput(input){
-        let form = input.currentTarget;
-        let name = form.elements.namedItem("latName").value;
+    async function processInput(){
+        let name = document.getElementById("inputField").value;
         let URLname = name.replace(/\s/g, "_");
         if(name === ""){
             return;

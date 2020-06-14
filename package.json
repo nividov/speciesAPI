@@ -44,6 +44,9 @@
     "moduleFileExtensions": [
       "js",
       "svelte"
+    ],
+    "transformIgnorePatterns": [
+      "(/node_modules/(?!(svelte-spa-router|regexparam)/))"
     ]
   },
   "setupFilesAfterEnv": [
