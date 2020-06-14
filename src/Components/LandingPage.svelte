@@ -2,15 +2,17 @@
     import { push } from "svelte-spa-router";
     import { query } from "../Modules/store";
 
-    query.useLocalStorage()
+    query.useLocalStorage();
 
-    $query = ""
+    $query = "";
 
     function processInput(input){
         let form = input.currentTarget;
         let name = form.elements.namedItem("latName").value;
         let apiRequestName = name.replace(/\s/g, "%20");
-
+        if(name === ""){
+            return;
+        }
         push(`/search/${apiRequestName}`);
     }
 
@@ -20,7 +22,7 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    let rand = getRandomInt(1, 10)
+    let rand = getRandomInt(1, 10);
 
 </script>
 

@@ -19,8 +19,12 @@
     
     async function processInput(input){
         let form = input.currentTarget;
+        console.log(form.elements)
         let name = form.elements.namedItem("latName").value;
         let apiRequestName = name.replace(/\s/g, "%20");
+        if(name === ""){
+            return;
+        }
 
         await push(`/search/${apiRequestName}`);
         location.reload();
@@ -28,7 +32,7 @@
 
     function openWikipedia() {
         let parameter = data.canonicalName.replace(/%20/g, "_");
-        window.open(`https://en.wikipedia.org/wiki/${parameter}`,"_blank")
+        window.open(`https://en.wikipedia.org/wiki/${parameter}`,"_blank");
     }
 
 </script>
