@@ -1,4 +1,4 @@
-import { push, location } from "svelte-spa-router";
+import { push } from "svelte-spa-router";
 
 export const routing = {
     changeTo(location){

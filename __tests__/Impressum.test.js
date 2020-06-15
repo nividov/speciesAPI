@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, cleanup, fireEvent } from "@testing-library/svelte";
 import Impressum from "../src/Components/Impressum.svelte";
-import { routing } from "../src/Modules/routing.js";
 
 afterEach(cleanup);
 
