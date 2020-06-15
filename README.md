@@ -25,7 +25,7 @@ The code was commented whenever an explanation was needed in roder to understand
 
 - A4 Projektmanagement
 
-To enable a solid project management, the code was uploaded to GitHub. This enabled the use of its version control system and its project functions (tasks + project board showing the current status of the app)
+To enable a solid project management, the code was uploaded to GitHub https://github.com/nividov/speciesAPI. This enabled the use of its version control system and its project functions (tasks + project board showing the current status of the app)
 
 ## Install & Setup
 
