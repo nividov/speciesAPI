@@ -7,20 +7,20 @@
 
 <div class="text-2xl mb-4 mt-8">Distribution Heat Map</div>
 
-<div class="flex mapBody">
+<div class="flex mapBody select-none">
     <div class="relative flex-grow container">
-        <div class="over">
+        <div class="over select-none">
             <img src={heatMap.west} alt="">
         </div>
-        <div class="under">
+        <div class="under select-none">
             <img src="./images/mapBackground/mapBackground1.png" alt="bild">
         </div>
     </div>
     <div class="relative flex-grow container">
-        <div class="over">
+        <div class="over select-none">
             <img src={heatMap.east} alt="">
         </div>
-        <div class="under">
+        <div class="under select-none">
             <img src="./images/mapBackground/mapBackground2.png" alt="bild">
         </div>
     </div>

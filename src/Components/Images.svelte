@@ -22,7 +22,7 @@
 {:else}
     <div class="imageContainer" on:mouseleave={handleLeave}>
         {#each imageData as imageData}
-            <div class="cont cursor-pointer">
+            <div class="cont">
                 <img class="image noDrag" src="{imageData.URL}" alt="bild" on:mouseenter={() => handleHover(imageData)}>
             </div>
         {/each}

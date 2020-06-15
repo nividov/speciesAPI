@@ -86,22 +86,42 @@
             <img id="wikipediaLogo" src="./images/Wikipedia/wikipedia.ico" alt="wikipedia_logo">
             <div class="text-xl pl-2">show Wikipedia article</div>
         </div>
-        <div class="">
+        <div>
             <div class="text-2xl mb-2"> Classification </div>
-            <ul class="text-xl">
-                <li id="Reich">Kingdom: {data.classification.kingdom}</li>
-                <li id="Stamm">Phylum: {data.classification.phylum}</li>
-                <li id="Klasse">Class: {data.classification.class}</li>
-                <li id="Ordnung">Order: {data.classification.order}</li>
-                <li id="Familie">Family: {data.classification.family}</li>
-                <li id="Gattung">Genus: {data.classification.genus}</li>
-                <li id="Art">Species: {data.classification.species}</li>
-            </ul>
+            <div class="text-xl classification">
+                <div class="flex">
+                    <div class="flex-1"><strong>Kingdom</strong></div>
+                    <div class="flex-1">{data.classification.kingdom}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1"><strong>Phylum</strong></div>
+                    <div class="flex-1">{data.classification.phylum}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1"><strong>Class</strong></div>
+                    <div class="flex-1">{data.classification.class}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1"><strong>Order</strong></div>
+                    <div class="flex-1">{data.classification.order}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1"><strong>Family</strong></div>
+                    <div class="flex-1">{data.classification.family}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1"><strong>Genus</strong></div>
+                    <div class="flex-1">{data.classification.genus}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1"><strong>Species</strong></div>
+                    <div class="flex-1">{data.classification.species}</div>
+                </div>
+            </div>
         </div>
         <div>
             <Map heatMap={data.heatMap} />
         </div>
-
         <div>
             <div class="text-2xl mt-8 mb-4">Images</div>
             <Images imageData={data.images} />
@@ -128,6 +148,9 @@
 
 
 <style>
+    .classification{
+        width: 20rem;
+    }
     .sadPanda2{
         height: 30rem;
     }
