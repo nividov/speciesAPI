@@ -69,7 +69,7 @@
         </form>
     </div>
     {#if data.matchType === "FUZZY"}
-        <div class="pl-12 pt-2">No results for {params.first.replace(/_/g, " ")}. Showing results for {data.canonicalName} instead</div>
+        <div class="pl-12 pt-2 text-white">No results for {params.first.replace(/_/g, " ")}. Showing results for {data.canonicalName} instead</div>
     {/if}
 </div>
 
@@ -117,12 +117,20 @@
     </div>
 
 
-{:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY"}
-    <div>Nothing found for {params.first.replace(/_/g, " ")}</div>
+{:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY" && data.matchType !== ""}
+    <div class="flex justify-center pt-32">
+        <img class="flex justify-center sadPanda2" src="./images/noResult/sadPanda2.jpg" alt="">
+    </div>
+    <div class="flex justify-center pt-8 text-6xl">
+        <div>Nothing found for "{params.first.replace(/_/g, " ")}"</div>
+    </div>
 {/if}
 
 
 <style>
+    .sadPanda2{
+        height: 30rem;
+    }
     .formContainer{
         max-width: 30rem;
     }
@@ -131,8 +139,8 @@
     }
     .input {
         width: 100%;
-        height: 52px;
-        font-size: 1.4rem;
+        height: 45px;
+        font-size: 1.25rem;
         padding-left: 1rem;
         background-color: transparent;
         border-color: transparent;
@@ -141,10 +149,10 @@
         outline: none;
     }
     .containerSearch {
-        background-color: rgb(189, 189, 189);
+        background-color: rgb(36, 36, 36);
         padding-left:1rem;
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 12px;
+        padding-bottom: 12px;
         width: 100%;
     }
     .form {
@@ -165,6 +173,7 @@
     .homeButton {
         margin-right: 1rem;
         font-size: 2rem;
+        color: white;
     }
     .resultsListBody {
         margin-top: 1.5rem;
@@ -176,7 +185,7 @@
         height: 6rem;
         padding-top: .75rem;
         text-align: center;
-        background-color: rgb(0, 132, 255);
+        background-color: rgb(46, 115, 179);
         margin-top: 2rem;
     }
     .gbif {
