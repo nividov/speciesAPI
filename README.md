@@ -33,10 +33,7 @@ To access the code, render the Website and use the tests, simply follow these st
 
 - install Node.js
 
-- clone this repository
-```sh
-git clone https://github.com/nividov/shopping_tailwind
-```
+- download and unpack this repository
 
 - install dependencies
 ```sh
