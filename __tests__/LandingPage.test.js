@@ -13,7 +13,7 @@ describe("LandingPage", () => {
     it("should have an input field", () => {
         render(LandingPage);
         expect(document.querySelector("#landingInput")).toBeTruthy();
-    })
+    });
     it("should call the correct URL on submit", async () => {
         render(LandingPage);
         const spy = jest.spyOn(routing, "changeTo");
@@ -21,5 +21,5 @@ describe("LandingPage", () => {
         await fireEvent.click(document.querySelector("#landingSubmit"));
         expect(spy).toHaveBeenCalledWith("/search/test_input");
         spy.mockRestore();
-    })
-})
+    });
+});

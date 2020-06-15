@@ -15,7 +15,7 @@ describe("LandingPage", () => {
         expect(document.querySelector("#impressum-box")).not.toBeTruthy();
         await fireEvent.click(document.querySelector("#impressumButton"));
         expect(document.querySelector("#impressum-box")).toBeTruthy();
-    })
+    });
     it("should close ImpressumBox when clicking the close button", async () => {
         render(Impressum);
         expect(document.querySelector("#impressum-box")).not.toBeTruthy();
@@ -23,5 +23,5 @@ describe("LandingPage", () => {
         expect(document.querySelector("#impressum-box")).toBeTruthy();
         await fireEvent.click(document.querySelector("#closeButton"));
         expect(document.querySelector("#impressum-box")).not.toBeTruthy();
-    })
-})
+    });
+});
