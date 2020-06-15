@@ -40,6 +40,23 @@
         window.open(`https://en.wikipedia.org/wiki/${parameter}`,"_blank");
     }
 
+    //This function is responsible to trigger a new load of data when the user navigates with the
+    //back or forward button
+    window.addEventListener("hashchange", function(){
+        let name = window.location.href;
+        let input = document.getElementById("inputField").value.replace(/\s/g, "_");
+        if(name.indexOf(input) === -1){
+            processBack();
+        }
+    });
+    async function processBack() {
+        let URL = window.location.href;
+        let name = URL.substring(URL.lastIndexOf("/") + 1)
+        console.log(name)
+        let fetchName = name.replace(/_/g, "%20");
+        document.getElementById("inputField").value = name.replace(/_/g, " ")
+        data = await fetchAll(fetchName);
+    }
 
 </script>
 
