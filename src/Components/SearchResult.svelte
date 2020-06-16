@@ -137,7 +137,7 @@
     </div>
 
 
-{:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY" && data.matchType !== ""}
+{:else if data.matchType !== "EXACT" && data.matchType !== "FUZZY" && data.matchType !== "" && data.matchType !== undefined}
     <div class="flex justify-center pt-32">
         <img class="flex justify-center sadPanda2" src="./images/noResult/sadPanda2.jpg" alt="">
     </div>
