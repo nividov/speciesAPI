@@ -46,7 +46,7 @@ npm run dev
 ```
 Navigate to localhost:5000. You should see the app running.
 
-- run the unit tests
+- run the unit tests 
 ```sh
 npm test
 ```
