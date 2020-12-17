@@ -4,10 +4,13 @@
 
     //upon submitting the search form, the input is first processed and brought into the correct
     //format so that it can be written into the request URL
+    let input = "";
+    let showSugg = false;
+
     function processInput(){
         let name = document.getElementById("landingInput").value;
-        let URLname = name.replace(/\s/g, "_");
-        if(name === ""){
+        let URLname = input.replace(/\s/g, "_");
+        if(input === ""){
             return;
         }
         routing.changeTo(`/search/${URLname}`);
@@ -28,9 +31,17 @@
 <div class="fixed z-40 containerLanding select-none">
     <div class="text-2xl {rand === 1 ? "" : "text-white"} font-semibold">SpeciesINFO</div>
     <form on:submit|preventDefault={processInput} class="form" name="landing-form">
-        <input type="text" name="latName" id="landingInput" class="input">
+        <input on:focus={() => {showSugg = true}} type="text" bind:value={input} name="latName" id="landingInput" class="input" placeholder="eg. Turdus merula" autocomplete="off">
         <button class="material-icons goArrow" id="landingSubmit" on:click={processInput}> arrow_forward </button>
     </form>
+    {#if showSugg}
+        <div class="suggestions">
+            <div class="titel">Try:</div>
+            <div class="item" on:click={() => {input = "Turdus merula"; processInput();}}>Turdus merula</div>
+            <div class="item" on:click={() => {input = "Panthera tigris"; processInput();}}>Panthera tigris</div>
+            <div class="item" on:click={() => {input = "Apis mellifera"; processInput();}}>Apis mellifera</div>
+        </div>
+    {/if}
 </div>
 
 <div class="impressum">
@@ -39,6 +50,22 @@
 
 
 <style>
+    .suggestions {
+        background: white;
+        border-radius: 6px;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    .suggestions .titel {
+        font-size: 1.5rem;
+        margin-bottom: 2px;
+    }
+    .suggestions .item {
+        font-size: 1.2rem;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        cursor: pointer;
+    }
     .backgroundImage {
 		height: 100%;
 		min-width: 100%;
